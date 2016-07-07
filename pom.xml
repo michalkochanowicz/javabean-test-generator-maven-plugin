@@ -1,12 +1,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>pl.waw.michal.maven.plugin</groupId>
 	<artifactId>javabean-test-generator-maven-plugin</artifactId>
-	<packaging>maven-plugin</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>javabean-test-generator-maven-plugin Maven Mojo</name>
-	<url>http://maven.apache.org</url>
+	<packaging>maven-plugin</packaging>
+
+	<name>Maven Mojo for generating Java Bean unit tests</name>
+	<description>Maven plugin for generating unit test of Java Beans</description>
+	<url>https://github.com/michalkochanowicz/javabean-test-generator-maven-plugin</url>
+
+	<licenses>
+		<license>
+			<name>GNU GPL v2</name>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Michał Kochanowicz</name>
+			<email>michal@michal.waw.pl</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/michalkochanowicz/javabean-test-generator-maven-plugin.git</connection>
+		<developerConnection>scm:git:https://github.com/michalkochanowicz/javabean-test-generator-maven-plugin.git</developerConnection>
+		<url>https://github.com/michalkochanowicz/javabean-test-generator-maven-plugin</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
