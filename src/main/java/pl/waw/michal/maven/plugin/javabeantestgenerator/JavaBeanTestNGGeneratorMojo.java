@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * Maven Mojo for generating unit Java Bean tests.
+ * Maven Mojo for generating Java Bean unit tests.
  */
 @Mojo(name = "generate-tests",
 	defaultPhase = LifecyclePhase.GENERATE_TEST_SOURCES,

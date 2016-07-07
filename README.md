@@ -3,24 +3,24 @@ Maven plugin generating unit tests for Java Beans
 
 # Rationale
 
-Generally unit testing simple Java Beans doesn't seem to be of great value. But if you can have
+Generally, unit testing simple Java Beans doesn't seem to be of great value. But if you can have
 these tests auto-generated, why not to have them?
 
 These tests actually directed my attention to couple of questionable methods.
 
 # Implementation
 
-In theory easies way to test Java Beans would be with help of Reflection. Unfortunately the Cobertura
+In theory, easies way to test Java Beans would be with help of Reflection. Unfortunately, the Cobertura
 doesn't see test performed through Reflection.
 
 https://github.com/cobertura/cobertura/issues/225
 
-This is why this plugin has been created. Tests are generated during code processing phase and then
+This is why this plugin has been created. Tests are generated during generate-test-sources phase and then
 compiled and executed together with hand-written tests. Test coverage reports can process them.
 
 # Usage
 
-Add following plugin to your project/build/plugins section. Check content of `configuration` tag and
+Add following plugin to your `project/build/plugins` section. Check content of `configuration` tag and
 adapt it to your needs.
 
 ```XML
