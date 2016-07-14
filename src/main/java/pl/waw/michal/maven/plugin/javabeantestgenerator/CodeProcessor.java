@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Analyses code - classes and sources - and decides for which class unit test should be generated. For each class
+ * Analyses code - classes and sources - and decides for which classes unit test should be generated. For each class
  * invokes {@link JavaBeanProcessor} to find properties which should be tested. If there are any properties to test,
  * {@link TestGenerator} is invoked.
  */

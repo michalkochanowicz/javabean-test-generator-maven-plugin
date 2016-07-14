@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
+/**
+ * Generator of unit test using JUnit 4.x.
+ */
 public class JUnitTestGenerator implements TestGenerator {
 
 	private static final String CLASS_HEADER =

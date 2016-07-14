@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
  * This class makes decision if given class should be tested. Decision is based on configuration given in
  * {@link Config} and other rules:
  * <ul>
- *         <li>Abstract classes are rejected</li>.
- *         <li>Non-public classes are rejected</li>.
+ *         <li>Abstract classes are rejected.</li>
+ *         <li>Non-public classes are rejected.</li>
  * </ul>
  */
 public class ClassQualifier {

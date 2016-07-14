@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * Model holding a package name and mask of classes from this package. It also offers
+ * method {@link #findJavaClassesInSources(String)} to find matching classes in source directories.
+ */
 public class PackageClassMask {
 
 	private String packageName;
