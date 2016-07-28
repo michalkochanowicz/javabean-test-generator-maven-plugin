@@ -3,7 +3,9 @@ package pl.waw.michal.maven.plugin.javabeantestgenerator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import pl.waw.michal.maven.plugin.javabeantestgenerator.generator.TestNGTestGenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ClassQualifierTest {
@@ -13,12 +15,12 @@ public class ClassQualifierTest {
 	@Before
 	public void setUp() throws Exception {
 		classQualifier = new ClassQualifier(new Config(
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
+			"",
+			"",
+			"",
+			new ArrayList<String>(),
+			new TestNGTestGenerator(new TestArgumentsGenerator()),
+			new ArrayList<PackageClassMask>(),
 			Arrays.asList(
 				"pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.a.A",
 				"pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.b.B*"
