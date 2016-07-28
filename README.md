@@ -10,7 +10,7 @@ These tests actually directed my attention to couple of questionable methods.
 
 # Implementation
 
-In theory, easies way to test Java Beans would be with help of Reflection. Unfortunately, the Cobertura
+In theory, easiest way to test Java Beans would be with help of Reflection. Unfortunately, the Cobertura
 doesn't see test performed through Reflection.
 
 https://github.com/cobertura/cobertura/issues/225
