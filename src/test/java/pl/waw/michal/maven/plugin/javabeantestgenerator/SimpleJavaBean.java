@@ -9,6 +9,8 @@ public class SimpleJavaBean {
 
 	private BeanWithZeroArgumentConstructor beanWithZeroArgumentConstructor;
 
+	private InnerClass innerClassProperty;
+
 	public byte[] getByteArrayProperty() {
 		return byteArrayProperty;
 	}
@@ -43,6 +45,18 @@ public class SimpleJavaBean {
 
 	public void setBeanWithZeroArgumentConstructor(BeanWithZeroArgumentConstructor BeanWithZeroArgumentConstructor) {
 		this.beanWithZeroArgumentConstructor = BeanWithZeroArgumentConstructor;
+	}
+
+	public InnerClass getInnerClassProperty() {
+		return innerClassProperty;
+	}
+
+	public void setInnerClassProperty(InnerClass innerClassProperty) {
+		this.innerClassProperty = innerClassProperty;
+	}
+
+	class InnerClass {
+
 	}
 
 }

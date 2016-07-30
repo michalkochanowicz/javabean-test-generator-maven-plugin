@@ -5,8 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 public class TestArgumentsGeneratorTest {
 
@@ -126,6 +128,22 @@ public class TestArgumentsGeneratorTest {
 		Assert.assertArrayEquals(
 			new String[] { "new pl.waw.michal.maven.plugin.javabeantestgenerator.BeanWithZeroArgumentConstructor()", "null" },
 			testArgumentsGenerator.getArguments(BeanWithZeroArgumentConstructor.class).toArray(new String[0])
+		);
+
+		// Unexpected object with inherited zero-argument constructor
+
+		Assert.assertArrayEquals(
+			new String[] { "new pl.waw.michal.maven.plugin.javabeantestgenerator.BeanWithInheritedZeroArgumentConstructor()", "null" },
+			testArgumentsGenerator.getArguments(BeanWithInheritedZeroArgumentConstructor.class).toArray(new String[0])
+		);
+
+		// Unexpected object of inner class with inherited zero-argument constructor
+		// Default zero-argument constructor of inner class is actually one-argument constructor and we don't
+		// handle this situation as too rare.
+
+		Assert.assertArrayEquals(
+			new String[] { "null" },
+			testArgumentsGenerator.getArguments(BeanWithInheritedZeroArgumentConstructor.InnerClass.class).toArray(new String[0])
 		);
 
 		// Unexpected object with no zero-arguments constructor

@@ -30,6 +30,7 @@ public class JUnitTestGeneratorTest {
 				case "byteArrayProperty":
 				case "intProperty":
 				case "beanWithZeroArgumentConstructor":
+				case "innerClassProperty":
 					propertyDescriptors.add(propertyDescriptor);
 			}
 		}
@@ -51,6 +52,10 @@ public class JUnitTestGeneratorTest {
 			Assert.assertTrue(testClassSource.contains("beanWithZeroArgumentConstructorValue = new pl.waw.michal.maven.plugin.javabeantestgenerator.BeanWithZeroArgumentConstructor();"));
 			Assert.assertTrue(testClassSource.contains("testSubject.setBeanWithZeroArgumentConstructor(beanWithZeroArgumentConstructorValue);"));
 			Assert.assertTrue(testClassSource.contains("Assert.assertEquals(beanWithZeroArgumentConstructorValue, testSubject.getBeanWithZeroArgumentConstructor());"));
+
+			Assert.assertTrue(testClassSource.contains("innerClassPropertyValue = null;"));
+			Assert.assertTrue(testClassSource.contains("testSubject.setInnerClassProperty(innerClassPropertyValue);"));
+			Assert.assertTrue(testClassSource.contains("Assert.assertEquals(innerClassPropertyValue, testSubject.getInnerClassProperty());"));
 		}
 	}
 
