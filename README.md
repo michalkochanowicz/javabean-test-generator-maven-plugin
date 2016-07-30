@@ -1,4 +1,4 @@
-# javabean-test-generator-maven-plugin
+# javabean-test-generator-maven-plugin [![Build Status](https://travis-ci.org/michalkochanowicz/javabean-test-generator-maven-plugin.svg?branch=master)](https://travis-ci.org/michalkochanowicz/javabean-test-generator-maven-plugin)
 Maven plugin generating unit tests for Java Beans
 
 # Rationale
