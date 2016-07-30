@@ -114,6 +114,13 @@ public class TestArgumentsGeneratorTest {
 			testArgumentsGenerator.getArguments(Collection.class).toArray(new String[0])
 		);
 
+		// Array
+
+		Assert.assertArrayEquals(
+			new String[] { "new byte[0]", "null" },
+			testArgumentsGenerator.getArguments(byte[].class).toArray(new String[0])
+		);
+
 		// Unexpected object with zero-argument constructor
 
 		Assert.assertArrayEquals(

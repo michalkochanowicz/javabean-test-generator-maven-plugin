@@ -11,7 +11,7 @@ public class TestArgumentsGenerator {
 	private Map<Class, List<String>> classArgumentsMap;
 
 	public TestArgumentsGenerator() throws NoSuchFieldException, IllegalAccessException {
-		classArgumentsMap = new HashMap<Class, List<String>>();
+		classArgumentsMap = new HashMap<>();
 
 		for(Class c : new Class[] { Byte.class, Short.class, Integer.class, Float.class, Double.class } ) {
 
@@ -96,6 +96,7 @@ public class TestArgumentsGenerator {
 	 *         <li>For char: minimum unicode code point, '0' and maximum unicode code point</li>
 	 *         <li>For Character: min value, '0', null and max value</li>
 	 *         <li>For java.lang.String: "test" literal and null</li>
+	 *         <li>For arrays: empty array and null</li>
 	 *         <li>For Collection, List and Set: empty collection (ArrayList or HashSet) and null</li>
 	 *         <li>For other classes: simply constructed object and null</li>
 	 * </ul>
@@ -113,6 +114,7 @@ public class TestArgumentsGenerator {
 	 *         <li>For "java.lang.Integer" property: "-123", "0", "null", "345"</li>
 	 *         <li>For "java.lang.String" property: "\"test\"", "\"\""</li>
 	 *         <li>For "java.util.Date" property: "new Date()", "new Date(123)"</li>
+	 *         <li>For "byte[]" property: "new byte[0]", "null"</li>
 	 * </ul>
 	 *
 	 * @param type	type of property for which test arguments are needed.
@@ -131,6 +133,8 @@ public class TestArgumentsGenerator {
 			return Arrays.asList("new java.util.ArrayList()", "null");
 		} else if(Collection.class.isAssignableFrom(type)) {
 			return Arrays.asList("new java.util.ArrayList()", "null");
+		} else if(type.isArray()) {
+			return Arrays.asList("new " + type.getComponentType().getCanonicalName() + "[0]", "null");
 		} else {
 			try {
 				type.getConstructor();

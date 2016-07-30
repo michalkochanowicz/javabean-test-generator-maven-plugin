@@ -2,11 +2,20 @@ package pl.waw.michal.maven.plugin.javabeantestgenerator;
 
 public class SimpleJavaBean {
 
-	private short shortProperty;
+	private byte[] byteArrayProperty;
+	private short shortProperty;	// Not a real property - no setter.
 	private int intProperty;
 	private long longProperty;
 
 	private BeanWithZeroArgumentConstructor beanWithZeroArgumentConstructor;
+
+	public byte[] getByteArrayProperty() {
+		return byteArrayProperty;
+	}
+
+	public void setByteArrayProperty(byte[] byteArrayProperty) {
+		this.byteArrayProperty = byteArrayProperty;
+	}
 
 	public short getShortProperty() {
 		return shortProperty;

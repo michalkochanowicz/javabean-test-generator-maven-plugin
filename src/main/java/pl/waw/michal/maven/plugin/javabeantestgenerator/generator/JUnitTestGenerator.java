@@ -77,7 +77,7 @@ public class JUnitTestGenerator implements TestGenerator {
 			replace("@PACKAGE@", testedClass.getPackage().getName()).
 			replace("@CLASS@", testedClass.getSimpleName()).
 			replace("@PROPERTY@", propertyDescriptor.getName()).
-			replace("@PROPERTY_TYPE@", propertyDescriptor.getPropertyType().getName()).
+			replace("@PROPERTY_TYPE@", propertyDescriptor.getPropertyType().getCanonicalName()).
 			replace("@GETTER@", propertyDescriptor.getReadMethod().getName()).
 			replace("@SETTER@", propertyDescriptor.getWriteMethod().getName());
 
