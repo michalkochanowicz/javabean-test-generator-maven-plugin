@@ -98,11 +98,9 @@ public class TestArgumentsGeneratorTest {
 
 		List<String> arguments = testArgumentsGenerator.getArguments(String.class);
 
-		String[] actuals = arguments.toArray(new String[0]);
-
 		Assert.assertArrayEquals(
 			new String[] {"\"test\"", "null" },
-			actuals
+			arguments.toArray(new String[0])
 		);
 
 		// Set
