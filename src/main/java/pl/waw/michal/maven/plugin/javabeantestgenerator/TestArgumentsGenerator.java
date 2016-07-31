@@ -13,7 +13,7 @@ public class TestArgumentsGenerator {
 	public TestArgumentsGenerator() throws NoSuchFieldException, IllegalAccessException {
 		classArgumentsMap = new HashMap<>();
 
-		for(Class c : new Class[] { Byte.class, Short.class, Integer.class, Float.class, Double.class } ) {
+		for(Class c : new Class[] { Byte.class, Short.class, Integer.class } ) {
 
 			classArgumentsMap.put(c,
 				Arrays.asList(
@@ -32,6 +32,48 @@ public class TestArgumentsGenerator {
 				)
 			);
 		}
+
+		classArgumentsMap.put(Float.class,
+			Arrays.asList(
+				"-" + Float.MAX_VALUE + "f",
+				"-" + Float.MIN_VALUE + "f",
+				"0.0f",
+				"null",
+				"" + Float.MIN_VALUE + "f",
+				"" + Float.MAX_VALUE + "f"
+			)
+		);
+
+		classArgumentsMap.put(float.class,
+			Arrays.asList(
+				"-" + Float.MAX_VALUE + "f",
+				"-" + Float.MIN_VALUE + "f",
+				"0.0f",
+				"" + Float.MIN_VALUE + "f",
+				"" + Float.MAX_VALUE + "f"
+				)
+		);
+
+		classArgumentsMap.put(Double.class,
+			Arrays.asList(
+				"-" + Double.MAX_VALUE + "d",
+				"-" + Double.MIN_VALUE + "d",
+				"0.0d",
+				"null",
+				Double.MIN_VALUE + "d",
+				Double.MAX_VALUE + "d"
+			)
+		);
+
+		classArgumentsMap.put(double.class,
+			Arrays.asList(
+				"-" + Double.MAX_VALUE + "d",
+				"-" + Double.MIN_VALUE + "d",
+				"0.0d",
+				Double.MIN_VALUE + "d",
+				Double.MAX_VALUE + "d"
+			)
+		);
 
 		classArgumentsMap.put(Long.class,
 			Arrays.asList(

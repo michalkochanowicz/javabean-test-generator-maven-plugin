@@ -7,6 +7,12 @@ public class SimpleJavaBean {
 	private int intProperty;
 	private long longProperty;
 
+	private Float floatWrapperProperty;
+	private float floatProperty;
+
+	private Double doubleWrapperProperty;
+	private double doubleProperty;
+
 	private BeanWithZeroArgumentConstructor beanWithZeroArgumentConstructor;
 
 	private InnerClass innerClassProperty;
@@ -33,6 +39,38 @@ public class SimpleJavaBean {
 
 	public void setLongProperty(long longProperty) {
 		this.longProperty = longProperty;
+	}
+
+	public Float getFloatWrapperProperty() {
+		return floatWrapperProperty;
+	}
+
+	public void setFloatWrapperProperty(Float floatWrapperProperty) {
+		this.floatWrapperProperty = floatWrapperProperty;
+	}
+
+	public float getFloatProperty() {
+		return floatProperty;
+	}
+
+	public void setFloatProperty(float floatProperty) {
+		this.floatProperty = floatProperty;
+	}
+
+	public Double getDoubleWrapperProperty() {
+		return doubleWrapperProperty;
+	}
+
+	public void setDoubleWrapperProperty(Double doubleWrapperProperty) {
+		this.doubleWrapperProperty = doubleWrapperProperty;
+	}
+
+	public double getDoubleProperty() {
+		return doubleProperty;
+	}
+
+	public void setDoubleProperty(double doubleProperty) {
+		this.doubleProperty = doubleProperty;
 	}
 
 	public long getSomeMagickNumberWhichIsNotProperty() {

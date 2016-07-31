@@ -58,15 +58,27 @@ public class TestArgumentsGeneratorTest {
 			testArgumentsGenerator.getArguments(long.class)
 		);
 
+		// Float + float
+
+		Assert.assertEquals(
+			Arrays.asList("-3.4028235E38f", "-1.4E-45f", "0.0f", "null", "1.4E-45f", "3.4028235E38f"),
+			testArgumentsGenerator.getArguments(Float.class)
+		);
+
+		Assert.assertEquals(
+			Arrays.asList("-3.4028235E38f", "-1.4E-45f", "0.0f", "1.4E-45f", "3.4028235E38f"),
+			testArgumentsGenerator.getArguments(float.class)
+		);
+
 		// Double + double
 
 		Assert.assertEquals(
-			Arrays.asList("4.9E-324", "0", "null", "1.7976931348623157E308"),
+			Arrays.asList("-1.7976931348623157E308d", "-4.9E-324d", "0.0d", "null", "4.9E-324d", "1.7976931348623157E308d"),
 			testArgumentsGenerator.getArguments(Double.class)
 		);
 
 		Assert.assertEquals(
-			Arrays.asList("4.9E-324", "0", "1.7976931348623157E308"),
+			Arrays.asList("-1.7976931348623157E308d", "-4.9E-324d", "0.0d", "4.9E-324d", "1.7976931348623157E308d"),
 			testArgumentsGenerator.getArguments(double.class)
 		);
 
@@ -81,8 +93,6 @@ public class TestArgumentsGeneratorTest {
 			Arrays.asList("'\\u0000'", "0", "'\\uFFFF'"),
 			testArgumentsGenerator.getArguments(char.class)
 		);
-
-
 
 		// String
 

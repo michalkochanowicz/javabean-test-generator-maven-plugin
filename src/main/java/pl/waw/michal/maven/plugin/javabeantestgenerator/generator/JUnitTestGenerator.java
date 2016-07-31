@@ -41,6 +41,12 @@ public class JUnitTestGenerator implements TestGenerator {
 			"\t\tAssert.assertEquals(@PROPERTY@Value, testSubject.@GETTER@());\n" +
 			"\n";
 
+	private static final String TEST_METHOD_TEST_DOUBLE_AND_FLOAT =
+			"\t\t@PROPERTY@Value = @VALUE@;\n" +
+			"\t\ttestSubject.@SETTER@(@PROPERTY@Value);\n" +
+			"\t\tAssert.assertEquals(@PROPERTY@Value, testSubject.@GETTER@(), 0.0d);\n" +
+			"\n";
+
 	private static final String TEST_METHOD_FOOTER =
 			"\t}\n" +
 			"\n";
@@ -61,9 +67,15 @@ public class JUnitTestGenerator implements TestGenerator {
 		for(PropertyDescriptor propertyDescriptor : propertyDescriptors) {
 			writer.write(substitute(TEST_METHOD_HEADER, testedClass, propertyDescriptor, null));
 
+			Class<?> propertyType = propertyDescriptor.getPropertyType();
+
 			// TODO: Log warning if only null argument is offered
-			for(String testArgument : testArgumentsGenerator.getArguments(propertyDescriptor.getPropertyType())) {
-				writer.write(substitute(TEST_METHOD_TEST, testedClass, propertyDescriptor, testArgument));
+			for(String testArgument : testArgumentsGenerator.getArguments(propertyType)) {
+				if(double.class.equals(propertyType) || float.class.equals(propertyType)) {
+					writer.write(substitute(TEST_METHOD_TEST_DOUBLE_AND_FLOAT, testedClass, propertyDescriptor, testArgument));
+				} else {
+					writer.write(substitute(TEST_METHOD_TEST, testedClass, propertyDescriptor, testArgument));
+				}
 			}
 
 			writer.write(substitute(TEST_METHOD_FOOTER, testedClass, propertyDescriptor, null));
