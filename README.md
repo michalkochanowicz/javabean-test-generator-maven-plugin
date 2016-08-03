@@ -27,7 +27,7 @@ adapt it to your needs.
 <plugin>
 	<groupId>pl.waw.michal.maven.plugin</groupId>
 	<artifactId>javabean-test-generator-maven-plugin</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<executions>
 		<execution>
 			<goals>
