@@ -24,7 +24,7 @@ import java.util.Map;
 	defaultPhase = LifecyclePhase.GENERATE_TEST_SOURCES,
 	requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME
 )
-public class JavaBeanTestNGGeneratorMojo extends AbstractMojo {
+public class JavaBeanTestGeneratorMojo extends AbstractMojo {
 
 	/**
 	 * The Maven project.

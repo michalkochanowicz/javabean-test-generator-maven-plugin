@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Plugin configuration. Built in {@link JavaBeanTestNGGeneratorMojo} from pom.xml configuration.
+ * Plugin configuration. Built in {@link JavaBeanTestGeneratorMojo} from pom.xml configuration.
  */
 public class Config {
 
