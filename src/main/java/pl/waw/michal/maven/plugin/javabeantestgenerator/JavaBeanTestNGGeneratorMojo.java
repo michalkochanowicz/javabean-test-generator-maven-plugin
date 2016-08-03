@@ -8,11 +8,11 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
-import pl.waw.michal.maven.plugin.javabeantestgenerator.generator.TestNGTestGenerator;
 
 import java.beans.IntrospectionException;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -89,31 +89,16 @@ public class JavaBeanTestNGGeneratorMojo extends AbstractMojo {
 				project.getBuild().getOutputDirectory(),
 				generatedTestSourcesDirectory,
 				project.getExecutionProject().getTestClasspathElements(),
-				new TestNGTestGenerator(new TestArgumentsGenerator()),
+				testingLibrary.getValue().getConstructor(TestArgumentsGenerator.class).newInstance(new TestArgumentsGenerator()),
 				packageClassMaskCollection,
 				classMasksToSkip
 			);
 
 			new CodeProcessor(new ClassQualifier(config), new JavaBeanProcessor()).process(config);
-		} catch(IOException e) {
-			getLog().error(e.getMessage(), e);
-			throw new MojoExecutionException(e.getMessage(), e);
-		} catch(ClassNotFoundException e) {
-			getLog().error(e.getMessage(), e);
-			throw new MojoExecutionException(e.getMessage(), e);
-		} catch(IntrospectionException e) {
-			getLog().error(e.getMessage(), e);
-			throw new MojoExecutionException(e.getMessage(), e);
-		} catch(NoSuchMethodException e) {
-			getLog().error(e.getMessage(), e);
-			throw new MojoExecutionException(e.getMessage(), e);
-		} catch(DependencyResolutionRequiredException e) {
-			getLog().error(e.getMessage(), e);
-			throw new MojoExecutionException(e.getMessage(), e);
-		} catch(IllegalAccessException e) {
-			getLog().error(e.getMessage(), e);
-			throw new MojoExecutionException(e.getMessage(), e);
-		} catch(NoSuchFieldException e) {
+		} catch(IOException | ClassNotFoundException | IntrospectionException | DependencyResolutionRequiredException
+			| NoSuchMethodException | NoSuchFieldException | IllegalAccessException | InvocationTargetException
+			| InstantiationException e) {
+
 			getLog().error(e.getMessage(), e);
 			throw new MojoExecutionException(e.getMessage(), e);
 		}
