@@ -54,12 +54,8 @@ public class CodeProcessor {
 				throw new IOException("Can't create directory \"" + directory.getPath() + "\"");
 			}
 
-			FileWriter fileWriter = new FileWriter(
-				directory.getPath() + File.separator + classToProcess.getSimpleName() + "Test.java");
-			try {
+			try(FileWriter fileWriter = new FileWriter(directory.getPath() + File.separator + classToProcess.getSimpleName() + "Test.java")) {
 				config.getTestGenerator().generateTest(fileWriter, classToProcess, propertiesToTest);
-			} finally {
-				fileWriter.close();
 			}
 		}
 	}
