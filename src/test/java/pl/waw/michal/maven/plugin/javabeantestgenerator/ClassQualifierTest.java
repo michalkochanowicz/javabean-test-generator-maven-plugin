@@ -36,6 +36,7 @@ public class ClassQualifierTest {
 		Assert.assertFalse(classQualifier.shouldProcessThisClass(pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.b.BB.class));
 		Assert.assertTrue(classQualifier.shouldProcessThisClass(pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.c.C.class));
 		Assert.assertFalse(classQualifier.shouldProcessThisClass(pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.z.Abstract.class));
+		Assert.assertFalse(classQualifier.shouldProcessThisClass(pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.BeanWithoutZeroArgumentConstructor.class));
 	}
 
 }

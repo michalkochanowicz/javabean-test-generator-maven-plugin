@@ -30,6 +30,12 @@ public class ClassQualifier {
 			return false;
 		}
 
+		try {
+			classToProcess.getConstructor();
+		} catch(NoSuchMethodException e) {
+			return false;
+		}
+
 		for(Pattern pattern : classMasksToSkipRegexp) {
 			if(pattern.matcher(classToProcess.getName()).matches()) {
 				return false;
