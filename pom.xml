@@ -3,7 +3,7 @@
 
 	<groupId>pl.waw.michal.maven.plugin</groupId>
 	<artifactId>javabean-test-generator-maven-plugin</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>Maven Mojo for generating Java Bean unit tests</name>
@@ -30,7 +30,7 @@
 			scm:git:https://github.com/michalkochanowicz/javabean-test-generator-maven-plugin.git
 		</developerConnection>
 		<url>https://github.com/michalkochanowicz/javabean-test-generator-maven-plugin</url>
-		<tag>javabean-test-generator-maven-plugin-1.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
