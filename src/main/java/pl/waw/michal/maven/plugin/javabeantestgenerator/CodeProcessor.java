@@ -2,7 +2,9 @@ package pl.waw.michal.maven.plugin.javabeantestgenerator;
 
 import pl.waw.michal.maven.plugin.javabeantestgenerator.generator.TestGenerator;
 
-import java.beans.*;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,8 +29,8 @@ public class CodeProcessor {
 		this.javaBeanProcessor = javaBeanProcessor;
 	}
 
-	public void process(Config config) throws IOException, ClassNotFoundException, IntrospectionException, NoSuchMethodException {
-		List<String> classNamesToProcess = new ArrayList<String>();
+	public void process(Config config) throws IOException, ClassNotFoundException, IntrospectionException, NoSuchMethodException, IllegalAccessException {
+		List<String> classNamesToProcess = new ArrayList<>();
 
 		for(PackageClassMask packageClassMask : config.getPackagesAndClassMasks()) {
 			classNamesToProcess.addAll(packageClassMask.findJavaClassesInSources(config.getSourceDirectory()));
@@ -61,16 +63,18 @@ public class CodeProcessor {
 	}
 
 	private URL[] getTestClasspathUrls(Config config) throws MalformedURLException {
-		URL url = new File(config.getOutputDirectory()).toURI().toURL();
+		// Order is important here. In case (which should be avoided) when there are two different classes
+		// with same package.Class, it is important to keep the order.
 
-		URL[] urls = new URL[config.getTestClasspath().size()+1];
-		int idx = 0;
-		urls[idx++] = url;
-		for(String s : config.getTestClasspath()) {
-			urls[idx++] = new File(s).toURI().toURL();
+		List<URL> urls = new ArrayList<>(config.getTestClasspath().size());
+		for(String classPathElement : config.getTestClasspath()) {
+			// We don't want to process test classes
+			if(!classPathElement.contains("target" + File.separator + "test-classes")) {
+				urls.add(new File(classPathElement).toURI().toURL());
+			}
 		}
-		return urls;
-	}
 
+		return urls.toArray(new URL[0]);
+	}
 
 }

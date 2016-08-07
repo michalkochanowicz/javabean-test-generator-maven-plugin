@@ -3,6 +3,9 @@ package pl.waw.michal.maven.plugin.javabeantestgenerator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.BeanWithTestCreatedManually;
+import pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.BeanWithTestGeneratedByThisPlugin;
+import pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.ClassWithTestSuffixTest;
 import pl.waw.michal.maven.plugin.javabeantestgenerator.generator.TestNGTestGenerator;
 
 import java.util.ArrayList;
@@ -37,6 +40,9 @@ public class ClassQualifierTest {
 		Assert.assertTrue(classQualifier.shouldProcessThisClass(pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.c.C.class));
 		Assert.assertFalse(classQualifier.shouldProcessThisClass(pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.z.Abstract.class));
 		Assert.assertFalse(classQualifier.shouldProcessThisClass(pl.waw.michal.maven.plugin.javabeantestgenerator.ClassQualifierSamples.BeanWithoutZeroArgumentConstructor.class));
+		Assert.assertFalse(classQualifier.shouldProcessThisClass(BeanWithTestCreatedManually.class));
+		Assert.assertFalse(classQualifier.shouldProcessThisClass(ClassWithTestSuffixTest.class));
+		Assert.assertTrue(classQualifier.shouldProcessThisClass(BeanWithTestGeneratedByThisPlugin.class));
 	}
 
 }
