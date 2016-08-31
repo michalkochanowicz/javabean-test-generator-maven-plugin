@@ -21,8 +21,6 @@ public class JUnitTestGenerator implements TestGenerator {
 			"\n" +
 			"public class @CLASS@Test {\n" +
 			"\n" +
-			"\t" + MARKER_FIELD + "\n" +
-			"\n" +
 			"\tprivate @PACKAGE@.@CLASS@ testSubject;\n" +
 			"\n" +
 			"\t@Before\n" +

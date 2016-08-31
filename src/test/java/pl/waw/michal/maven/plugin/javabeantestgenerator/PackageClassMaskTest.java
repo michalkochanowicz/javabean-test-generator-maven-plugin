@@ -30,7 +30,10 @@ public class PackageClassMaskTest {
 
 		Assert.assertArrayEquals(
 			Arrays.asList("pl.michal.AA", "pl.michal.AB").toArray(new String[0]),
-			packageClassMask.findJavaClassesInSources(testSourceDirectoryPath + File.separator + "src").toArray(new String[0])
+			packageClassMask.findJavaClassesInSources(
+				testSourceDirectoryPath + File.separator + "src" + File.separator + "main" + File.separator + "java",
+				testSourceDirectoryPath + File.separator + "src" + File.separator + "test" + File.separator + "java"
+			).toArray(new String[0])
 		);
 	}
 

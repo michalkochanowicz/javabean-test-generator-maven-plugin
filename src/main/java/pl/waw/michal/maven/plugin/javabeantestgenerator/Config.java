@@ -13,6 +13,8 @@ public class Config {
 
 	private String sourceDirectory;
 
+	private String testSourceDirectory;
+
 	private String outputDirectory;
 
 	private String generatedTestSourcesDirectory;
@@ -25,7 +27,7 @@ public class Config {
 
 	private Collection<String> classMasksToSkip;
 
-	public Config(String sourceDirectory, String outputDirectory, String generatedTestSourcesDirectory, List<String> testClasspath, TestGenerator testGenerator, Collection<PackageClassMask> packagesAndClassMasks, Collection<String> classMasksToSkip) {
+	public Config(String sourceDirectory, String testSourceDirectory, String outputDirectory, String generatedTestSourcesDirectory, List<String> testClasspath, TestGenerator testGenerator, Collection<PackageClassMask> packagesAndClassMasks, Collection<String> classMasksToSkip) {
 		if(sourceDirectory == null)
 			throw new IllegalArgumentException("sourceDirectory can not be null");
 		if(outputDirectory == null)
@@ -40,6 +42,7 @@ public class Config {
 			throw new IllegalArgumentException("packagesAndClassMasks can not be null");
 
 		this.sourceDirectory = sourceDirectory;
+		this.testSourceDirectory = testSourceDirectory;
 		this.outputDirectory = outputDirectory;
 		this.generatedTestSourcesDirectory = generatedTestSourcesDirectory;
 		this.testClasspath = testClasspath;
@@ -50,6 +53,10 @@ public class Config {
 
 	public String getSourceDirectory() {
 		return sourceDirectory;
+	}
+
+	public String getTestSourceDirectory() {
+		return testSourceDirectory;
 	}
 
 	public String getOutputDirectory() {

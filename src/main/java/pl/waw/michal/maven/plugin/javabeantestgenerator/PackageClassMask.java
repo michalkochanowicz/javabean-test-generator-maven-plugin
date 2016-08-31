@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * Model holding a package name and mask of classes from this package. It also offers
- * method {@link #findJavaClassesInSources(String)} to find matching classes in source directories.
+ * method {@link #findJavaClassesInSources(String, String)} to find matching classes in source directories.
  */
 public class PackageClassMask {
 
@@ -33,24 +33,33 @@ public class PackageClassMask {
 	}
 
 	/**
-	 * Searches for Java source files matching {@link #packageName} and {@link #classNameMask} in specified directory.
+	 * Searches for Java source files matching {@link #packageName} and {@link #classNameMask} in specified
+	 * directory.
+	 * <p>
+	 * Skips classes for which there is a manually written test (a source file with same name and <code>Test</code>
+	 * suffix). This method of detecting manually written test is not perfect, but for now there is no better one.
 	 *
 	 * @param sourceDirectory	root of Java sources.
 	 * @return			{@link List} of {@link String}s containing class names (package.Class).
 	 * @throws IOException		in case of IO error
 	 */
-	public List<String> findJavaClassesInSources(String sourceDirectory) throws IOException {
+	public List<String> findJavaClassesInSources(String sourceDirectory, String testSourceDirectory) throws IOException {
 		List<String> javaSources = new ArrayList<String>();
+
+		String testSourcePackageDurectory = getPackageDirectory(testSourceDirectory);
 
 		File[] allEntriesInSourceDirectory = new File(getPackageDirectory(sourceDirectory)).listFiles();
 
 		if(allEntriesInSourceDirectory == null)
 			throw new IOException("Error listing files in directory \"" + getPackageDirectory(sourceDirectory) + "\"");
 
-		Pattern pattern = Pattern.compile(classNameMask.replaceAll("\\*", ".*") + "\\.java");
+		Pattern javaClassSourcePattern = Pattern.compile(classNameMask.replaceAll("\\*", ".*") + "\\.java");
 
 		for(File directoryEntry : allEntriesInSourceDirectory) {
-			if(!directoryEntry.isFile() || !pattern.matcher(directoryEntry.getName()).matches())
+			if(!directoryEntry.isFile() || !javaClassSourcePattern.matcher(directoryEntry.getName()).matches())
+				continue;
+
+			if(new File(testSourcePackageDurectory + File.separatorChar + directoryEntry.getName().replace(".java", "Test.java")).exists())
 				continue;
 
 			// Make sure there is no mess with path separators.

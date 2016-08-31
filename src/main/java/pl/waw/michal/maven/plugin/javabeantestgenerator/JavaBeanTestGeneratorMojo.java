@@ -86,6 +86,7 @@ public class JavaBeanTestGeneratorMojo extends AbstractMojo {
 
 			Config config = new Config(
 				project.getBuild().getSourceDirectory(),
+				project.getBuild().getTestSourceDirectory(),
 				project.getBuild().getOutputDirectory(),
 				generatedTestSourcesDirectory,
 				project.getExecutionProject().getTestClasspathElements(),

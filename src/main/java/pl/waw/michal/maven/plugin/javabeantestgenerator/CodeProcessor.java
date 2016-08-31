@@ -33,13 +33,13 @@ public class CodeProcessor {
 		List<String> classNamesToProcess = new ArrayList<>();
 
 		for(PackageClassMask packageClassMask : config.getPackagesAndClassMasks()) {
-			classNamesToProcess.addAll(packageClassMask.findJavaClassesInSources(config.getSourceDirectory()));
+			classNamesToProcess.addAll(packageClassMask.findJavaClassesInSources(config.getSourceDirectory(), config.getTestSourceDirectory()));
 		}
 
-		URLClassLoader urlClassLoader = new URLClassLoader(getTestClasspathUrls(config), this.getClass().getClassLoader());
+		URLClassLoader urlClassLoader = createClassLoaderWithMavenDependencies(config);
 
-		for(String classNameToPRocess : classNamesToProcess) {
-			Class classToProcess = urlClassLoader.loadClass(classNameToPRocess);
+		for(String classNameToPocess : classNamesToProcess) {
+			Class classToProcess = urlClassLoader.loadClass(classNameToPocess);
 
 			if(!classQualifier.shouldProcessThisClass(classToProcess)) {
 				continue;
@@ -62,7 +62,7 @@ public class CodeProcessor {
 		}
 	}
 
-	private URL[] getTestClasspathUrls(Config config) throws MalformedURLException {
+	private URLClassLoader createClassLoaderWithMavenDependencies(Config config) throws MalformedURLException {
 		// Order is important here. In case (which should be avoided) when there are two different classes
 		// with same package.Class, it is important to keep the order.
 
@@ -74,7 +74,7 @@ public class CodeProcessor {
 			}
 		}
 
-		return urls.toArray(new URL[0]);
+		return new URLClassLoader(urls.toArray(new URL[0]), null/*this.getClass().getClassLoader()*/);
 	}
 
 }

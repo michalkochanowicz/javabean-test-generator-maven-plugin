@@ -18,6 +18,7 @@ public class ConfigTest {
 				"",
 				"",
 				"",
+				"",
 				new ArrayList<String>(),
 				new TestNGTestGenerator(new TestArgumentsGenerator()),
 				new ArrayList<PackageClassMask>(),
@@ -30,6 +31,7 @@ public class ConfigTest {
 		Assert.assertEquals(
 			0,
 			new Config(
+				"",
 				"",
 				"",
 				"",
