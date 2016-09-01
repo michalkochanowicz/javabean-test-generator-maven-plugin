@@ -47,6 +47,12 @@ public class JUnitTestGenerator implements TestGenerator {
 			"\t\tAssert.assertEquals(@PROPERTY@Value, testSubject.@GETTER@(), 0.0d);\n" +
 			"\n";
 
+	private static final String TEST_METHOD_TEST_ARRAY =
+			"\t\t@PROPERTY@Value = @VALUE@;\n" +
+			"\t\ttestSubject.@SETTER@(@PROPERTY@Value);\n" +
+			"\t\tAssert.assertArrayEquals(@PROPERTY@Value, testSubject.@GETTER@());\n" +
+			"\n";
+
 	private static final String TEST_METHOD_FOOTER =
 			"\t}\n" +
 			"\n";
@@ -73,6 +79,8 @@ public class JUnitTestGenerator implements TestGenerator {
 			for(String testArgument : testArgumentsGenerator.getArguments(propertyType)) {
 				if(double.class.equals(propertyType) || float.class.equals(propertyType)) {
 					writer.write(substitute(TEST_METHOD_TEST_DOUBLE_AND_FLOAT, testedClass, propertyDescriptor, testArgument));
+				} else if(propertyType.isArray()) {
+					writer.write(substitute(TEST_METHOD_TEST_ARRAY, testedClass, propertyDescriptor, testArgument));
 				} else {
 					writer.write(substitute(TEST_METHOD_TEST, testedClass, propertyDescriptor, testArgument));
 				}

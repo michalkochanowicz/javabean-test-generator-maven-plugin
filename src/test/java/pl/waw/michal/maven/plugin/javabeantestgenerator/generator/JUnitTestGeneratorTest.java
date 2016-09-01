@@ -58,7 +58,7 @@ public class JUnitTestGeneratorTest {
 
 		Assert.assertTrue(testClassSource.contains("byteArrayPropertyValue = new byte[0];"));
 		Assert.assertTrue(testClassSource.contains("testSubject.setByteArrayProperty(byteArrayPropertyValue);"));
-		Assert.assertTrue(testClassSource.contains("Assert.assertEquals(byteArrayPropertyValue, testSubject.getByteArrayProperty());"));
+		Assert.assertTrue(testClassSource.contains("Assert.assertArrayEquals(byteArrayPropertyValue, testSubject.getByteArrayProperty());"));
 
 		Assert.assertTrue(testClassSource.contains("intPropertyValue = -2147483648;"));
 		Assert.assertTrue(testClassSource.contains("testSubject.setIntProperty(intPropertyValue);"));
